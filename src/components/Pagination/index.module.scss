@@ -1,0 +1,13 @@
+.pagination {
+  margin: 2rem auto;
+  padding: .5rem 2rem;
+  border: 1px solid white;
+  border-radius: 8px;
+  display: flex;
+  gap: 1rem;
+
+  &__arrow {
+    cursor: pointer;
+  }
+
+}
