@@ -1,0 +1,14 @@
+.character-card {
+  display: flex;
+  padding: 1rem;
+  border: 1px solid white;
+  gap: 1.5rem;
+
+ img {
+  max-width: 300px;
+ }
+
+ &__info {
+
+ }
+}
