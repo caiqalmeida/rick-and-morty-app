@@ -1,10 +1,14 @@
 import './App.css'
+import { CharactersList, Pagination, SearchBar, Title } from './components'
 
 function App() {
 
   return (
     <>
-      <h1>Hello Rick and Morty</h1>
+      <Title />
+      <SearchBar />
+      <CharactersList />
+      <Pagination />
     </>
   )
 }
