@@ -27,7 +27,7 @@ export function SearchBar ({isSearching, searchName, setSearchName, handleSearch
     {isSearching && (  
     <div className={classes['search-bar__info']}>
       <span>Searching for: {searchName} </span>
-      <button onClick={handleClearSearch} className={classes['search-bar__button']}>X Cancel search</button>
+      <button onClick={handleClearSearch} className={classes['search-bar__button']}>X Clear search</button>
     </div> 
     )}
 
