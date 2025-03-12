@@ -44,7 +44,16 @@ button {
     box-shadow: 0 0 20px var(--secondary-color);
     transform: scale(1.1);
     border: 2px solid var(--secondary-color);
+  }
 
+  &:disabled {
+    background: black;
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    opacity: 0.5;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
   }
 
 }
