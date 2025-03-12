@@ -6,13 +6,14 @@ interface PaginationProps {
     hasPrevious: boolean;
     hasNext: boolean;
     current: number;
+    pages: number;
   }
   isLoadingCharacters: boolean;
 }
 
 
 export function Pagination ({pagination, isLoadingCharacters} : PaginationProps ) {
-  const { current, hasNext, hasPrevious, handleChangePage} = pagination;
+  const { current, hasNext, hasPrevious, handleChangePage, pages} = pagination;
   return (
     <div className={classes.pagination}>
       <button 
@@ -20,7 +21,7 @@ export function Pagination ({pagination, isLoadingCharacters} : PaginationProps 
       onClick={() => pagination.handleChangePage(-1)}
       disabled={!hasPrevious || isLoadingCharacters || current === 1}
       >&lt;</button>
-      <span>Página {current}</span>
+      <span>Page {current} of {pages}</span>
       <button 
       className={classes['pagination__arrow']}
       onClick={() => handleChangePage(+1)}
