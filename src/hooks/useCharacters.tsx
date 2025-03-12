@@ -5,9 +5,11 @@ import { Character } from "../types/ram-api";
 export const useCharacters = () => {
   const [characters, setCharacters] = useState<[Character[]] | []>([]);
   const [isLoadingCharacters, setIsLoadingCharacters] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [hasPreviousPage, setHasPreviousPage] = useState(false);
-  const [hasNextPage, setHasNextPage] = useState(false);
+  const [pagination, setPagination] = useState({
+    hasPrevious: false,
+    hasNext: false,
+    current: 1
+  })
   const [isSearching, setIsSearching] = useState(false);
   const [searchName, setSearchName] = useState("");
 
@@ -23,9 +25,11 @@ export const useCharacters = () => {
       
       newCharacters[page] = fetchedCharacters;
 
-      setHasPreviousPage(!!prev);
-      setHasNextPage(!!next);
-      setCurrentPage(page);
+      setPagination({
+        hasPrevious: !!prev,
+        hasNext: !!next,
+        current: page
+      })
       setCharacters(newCharacters);
       setIsLoadingCharacters(false);
     } catch (error) {
@@ -35,7 +39,7 @@ export const useCharacters = () => {
   };
 
   const handleChangePage = (pageSum: number) => {
-    fetchCharacters({ page: currentPage + pageSum, isSearching });
+    fetchCharacters({ page: pagination.current + pageSum, isSearching });
   };
 
   const handleSearch = () => {
@@ -56,9 +60,7 @@ export const useCharacters = () => {
   return {
     characters,
     isLoadingCharacters,
-    currentPage,
-    hasPreviousPage,
-    hasNextPage,
+    pagination: {...pagination, handleChangePage},
     isSearching,
     searchName,
     setSearchName,

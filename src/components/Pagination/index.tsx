@@ -1,27 +1,30 @@
 import classes from './index.module.scss';
 
 interface PaginationProps {
-  currentPage: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
-  handleChangePage: (page: number) => void;
+  pagination: {
+    handleChangePage: (pageSum: number) => void;
+    hasPrevious: boolean;
+    hasNext: boolean;
+    current: number;
+  }
   isLoadingCharacters: boolean;
 }
 
 
-export function Pagination ({currentPage, hasNextPage, hasPreviousPage, handleChangePage, isLoadingCharacters} : PaginationProps ) {
+export function Pagination ({pagination, isLoadingCharacters} : PaginationProps ) {
+  const { current, hasNext, hasPrevious, handleChangePage} = pagination;
   return (
     <div className={classes.pagination}>
       <button 
       className={classes['pagination__arrow']}
-      onClick={() => handleChangePage(-1)}
-      disabled={!hasPreviousPage || isLoadingCharacters || currentPage === 1}
+      onClick={() => pagination.handleChangePage(-1)}
+      disabled={!hasPrevious || isLoadingCharacters || current === 1}
       >&lt;</button>
-      <span>Página {currentPage}</span>
+      <span>Página {current}</span>
       <button 
       className={classes['pagination__arrow']}
       onClick={() => handleChangePage(+1)}
-      disabled={!hasNextPage || isLoadingCharacters}
+      disabled={!hasNext || isLoadingCharacters}
       >&gt;</button>
     </div>
   )
