@@ -5,6 +5,13 @@
   gap: 1rem;
 }
 
+.search-bar__info {
+  margin-top: 2rem ;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .search-bar__input {
   width: 100%;
   padding: 1rem .5rem;
