@@ -13,10 +13,10 @@ export const useCharacters = () => {
 
   const fetchCharacters = async ({ page = 1, isSearching }: { page?: number; isSearching?: boolean }) => {
     try {
+      setIsLoadingCharacters(true);
+
       const params: { page: number; search?: string } = { page };
       if (isSearching) params.search = searchName;
-
-      setIsLoadingCharacters(true);
 
       const { results: fetchedCharacters, info: { next, prev } } = await getCharacters(params);
       const newCharacters: [Character[]] | [] = [...characters];
