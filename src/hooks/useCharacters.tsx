@@ -8,7 +8,8 @@ export const useCharacters = () => {
   const [pagination, setPagination] = useState({
     hasPrevious: false,
     hasNext: false,
-    current: 1
+    current: 1,
+    pages: 0
   })
   const [isSearching, setIsSearching] = useState(false);
   const [searchName, setSearchName] = useState("");
@@ -20,7 +21,7 @@ export const useCharacters = () => {
       const params: { page: number; search?: string } = { page };
       if (isSearching) params.search = searchName;
 
-      const { results: fetchedCharacters, info: { next, prev } } = await getCharacters(params);
+      const { results: fetchedCharacters, info: { next, prev, pages } } = await getCharacters(params);
       const newCharacters: [Character[]] | [] = [...characters];
       
       newCharacters[page] = fetchedCharacters;
@@ -28,7 +29,8 @@ export const useCharacters = () => {
       setPagination({
         hasPrevious: !!prev,
         hasNext: !!next,
-        current: page
+        current: page,
+        pages
       })
       setCharacters(newCharacters);
       setIsLoadingCharacters(false);
