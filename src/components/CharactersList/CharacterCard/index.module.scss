@@ -3,12 +3,13 @@
   padding: 1rem;
   border: 1px solid white;
   gap: 1.5rem;
+  max-width: 45%;
 
  img {
-  max-width: 300px;
+  max-width: 150px;
  }
 
  &__info {
-
+  word-break: break-all;
  }
 }

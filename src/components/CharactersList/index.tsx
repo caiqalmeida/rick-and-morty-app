@@ -1,13 +1,24 @@
-import { CharacterCard } from "./CharacterCard"
-import classes from './index.module.scss'
+import { Character } from "../../types/ram-api";
+import { CharacterCard } from "./CharacterCard";
+import classes from './index.module.scss';
 
-export function CharactersList () {
+interface CharactersListProps {
+  isLoadingCharacters: boolean;
+  characters: [Character[]] | [];
+  currentPage: number;
+}
+
+export function CharactersList ({isLoadingCharacters, characters, currentPage} : CharactersListProps) {
+  if(isLoadingCharacters) {
+    return (
+      <h1>Carregando ...</h1>
+    )
+  }
   return (
     <div className={classes['character-list']}>
-    <CharacterCard />
-    <CharacterCard />
-    <CharacterCard />
-    <CharacterCard />
+      {characters[currentPage]?.map(character => {
+        return <CharacterCard key={character.id} character={character} />
+      })}
     </div>
   )
 }
