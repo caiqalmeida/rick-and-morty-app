@@ -28,23 +28,23 @@ button {
   outline: none;  
   cursor: pointer;    
 
-
-
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-  color: white;
+  background: black;
+  color: var(--primary-color);
   font-size: 16px;
   font-weight: bold;
   padding: 12px 24px;
-  border: none;
+  border: 2px solid var(--primary-color);
   border-radius: 8px;
-  cursor: pointer;
+  box-shadow: 0 0 10px var(--primary-color);
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    transform: scale(1.05);
-    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background: var(--secondary-color);
+    color: black;
+    box-shadow: 0 0 20px var(--secondary-color);
+    transform: scale(1.1);
+    border: 2px solid var(--secondary-color);
+
   }
 
 }
