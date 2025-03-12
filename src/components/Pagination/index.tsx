@@ -1,11 +1,28 @@
-import classes from './index.module.scss'
+import classes from './index.module.scss';
 
-export function Pagination () {
+interface PaginationProps {
+  currentPage: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+  handleChangePage: (page: number) => void;
+  isLoadingCharacters: boolean;
+}
+
+
+export function Pagination ({currentPage, hasNextPage, hasPreviousPage, handleChangePage, isLoadingCharacters} : PaginationProps ) {
   return (
     <div className={classes.pagination}>
-      <span className={classes['pagination__arrow']}>&lt;</span>
-      <span>Página 1</span>
-      <span className={classes['pagination__arrow']}>&gt;</span>
+      <button 
+      className={classes['pagination__arrow']}
+      onClick={() => handleChangePage(-1)}
+      disabled={!hasPreviousPage || isLoadingCharacters || currentPage === 1}
+      >&lt;</button>
+      <span>Página {currentPage}</span>
+      <button 
+      className={classes['pagination__arrow']}
+      onClick={() => handleChangePage(+1)}
+      disabled={!hasNextPage || isLoadingCharacters}
+      >&gt;</button>
     </div>
   )
 }
