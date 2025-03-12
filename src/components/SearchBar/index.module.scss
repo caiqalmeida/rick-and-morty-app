@@ -15,17 +15,8 @@
 .search-bar__input {
   width: 100%;
   padding: 1rem .5rem;
-  border: 1px white solid;
-  border-radius: 8px;
+
+  border: 2px solid;
+  border-image: var(--border-two-colors);
 
 } 
-
-.search-bar__button {
-  padding: .5rem 2rem;
-  border: 1px white solid;
-  border-radius: 8px;
-
-  &:hover {
-    background-color: white;
-  }
-}

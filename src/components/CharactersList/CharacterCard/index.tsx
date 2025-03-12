@@ -10,11 +10,11 @@ export function CharacterCard ({character} : CharacterCardProps) {
     <div className={classes['character-card']}>
       <img src={character.image} />
       <div className={classes['character-card__info']}>
-        <p>{character.name}</p>
-        <p>Status : {character.status}</p>
-        <p>Specie : {character.species}</p>
-        <p>Last know location : {character.location.name} </p>
-        <p>First seen in : {character.episode[0]} </p>
+        <h3>{character.name}</h3>
+        <p className={classes['character-card__info__item']}><span>Status :</span> {character.status}</p>
+        <p className={classes['character-card__info__item']}><span>Specie :</span> {character.species}</p>
+        <p className={classes['character-card__info__item']}><span>Last know location :</span> {character.location.name} </p>
+        <p className={classes['character-card__info__item']}><span>First seen in :</span> {character.episode[0]} </p>
       </div>
     </div>
   )

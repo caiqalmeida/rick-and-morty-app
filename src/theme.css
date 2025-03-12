@@ -1,0 +1,7 @@
+:root {
+  --primary-color: #B8D8E7;
+  --secondary-color: #E7B8C1;
+
+  --filter-blue: brightness(0.9) contrast(1.1) sepia(0.3) hue-rotate(180deg) saturate(2);
+  --border-two-colors: linear-gradient(90deg, var(--primary-color), var(--secondary-color)) 1;
+}

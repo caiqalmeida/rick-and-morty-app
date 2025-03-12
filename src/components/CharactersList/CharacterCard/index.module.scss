@@ -1,15 +1,36 @@
 .character-card {
   display: flex;
+  gap: 1.5rem; 
   padding: 1rem;
-  border: 1px solid white;
-  gap: 1.5rem;
+  border: 2px solid;
+  border-image: var(--border-two-colors);
+
   max-width: 45%;
 
  img {
   max-width: 150px;
+  transition: filter 0.5s ease-in-out;
+  filter: var(--filter-blue);
+
+  &:hover {
+    filter: none;
+  }
  }
+
+
 
  &__info {
   word-break: break-all;
+
+  h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+   }
+
+   &__item {
+    span {
+      color: var(--secondary-color);
+    }
+   }
  }
 }
