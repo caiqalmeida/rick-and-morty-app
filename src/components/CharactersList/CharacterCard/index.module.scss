@@ -4,6 +4,7 @@
   padding: 1rem;
   border: 2px solid;
   border-image: var(--border-two-colors);
+  
 
   max-width: 45%;
 
@@ -31,4 +32,11 @@
     }
    }
  }
+}
+
+@media (max-width: 1103px) {
+  .character-card {
+    width: 100%;
+    max-width: none;
+  }
 }
