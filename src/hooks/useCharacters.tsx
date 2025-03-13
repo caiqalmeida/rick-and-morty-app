@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 import { getCharacters } from "../services/ram-api";
 import { Character } from "../types/ram-api";
 
@@ -38,6 +39,12 @@ export const useCharacters = (searchName: string) => {
   })
   const [isSearching, setIsSearching] = useState(false);
 
+  const handleFetchError = (error: string) => {
+    toast(error)
+    setIsSearching(false)
+    resetPage()
+  }
+
   const fetchCharacters = async ({ page = 1 }: { page?: number;  }) => {
     try {
       setIsLoadingCharacters(true);
@@ -59,7 +66,13 @@ export const useCharacters = (searchName: string) => {
       setCharacters(newCharacters);
       setIsLoadingCharacters(false);
     } catch (error) {
-      console.error("Error fetching people:", error);
+      if (error instanceof Error) {
+        handleFetchError(error.message)
+      } else {
+        handleFetchError('Unknown error occurred');
+      }
+
+      console.error("Error fetching characters:", error);
       setIsLoadingCharacters(false);
     }
   };

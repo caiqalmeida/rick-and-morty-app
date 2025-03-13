@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import { CharactersList, Pagination, SearchBar, Title } from './components';
 import { useCharacters } from './hooks/useCharacters';
@@ -35,6 +36,7 @@ function App() {
       <SearchBar isSearching={isSearching} searchName={searchName} onSearch={onSearch} onClearSearch={onClearSearch} />
       <CharactersList characters={characters} isLoadingCharacters={isLoadingCharacters} currentPage={currentPage} />
       <Pagination currentPage={currentPage} pagination={pagination} isLoadingCharacters={isLoadingCharacters} />
+      <ToastContainer />
     </>
   )
 }
