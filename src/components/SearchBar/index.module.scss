@@ -10,6 +10,16 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  &__text {
+    font-size: 1.5rem;
+
+    span {
+      margin-left: .5rem;
+      color: var(--primary-color);
+      font-size: 2rem;
+    }
+  }
 }
 
 .search-bar__input {
@@ -18,5 +28,10 @@
 
   border: 2px solid;
   border-image: var(--border-two-colors);
-
 } 
+
+.search-bar__button {
+  display: flex;
+  align-items: center;
+  gap: .5rem
+}

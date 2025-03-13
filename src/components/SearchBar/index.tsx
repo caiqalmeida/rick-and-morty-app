@@ -1,3 +1,4 @@
+import { SlClose, SlMagnifier } from "react-icons/sl";
 import classes from './index.module.scss';
 
 interface SearchBarProps {
@@ -18,16 +19,22 @@ export function SearchBar ({isSearching, searchName, setSearchName, handleSearch
       type="text" 
       placeholder="Search for character name"  
       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchName(event.target.value);
+        let value = event.target.value;
+        value = value.replace(/^\s+/, "");
+        setSearchName(value);
       }}
       value={searchName}
       />
-      <button onClick={handleSearch} className={classes['search-bar__button']}>Search</button>
+      <button onClick={handleSearch} className={classes['search-bar__button']}>
+        <SlMagnifier />Search
+      </button>
     </div>
     {isSearching && (  
     <div className={classes['search-bar__info']}>
-      <span>Searching for: {searchName} </span>
-      <button onClick={handleClearSearch} className={classes['search-bar__button']}>X Clear search</button>
+      <button onClick={handleClearSearch} className={classes['search-bar__button']}>
+        <SlClose />Clear search
+      </button>
+      <p className={classes['search-bar__info__text']}>Searching for <span>{searchName}</span></p>
     </div> 
     )}
 
