@@ -15,10 +15,10 @@ export function CharactersList ({isLoadingCharacters, characters, currentPage} :
     )
   }
   return (
-    <div className={classes['character-list']}>
+    <main className={classes['character-list']}>
       {characters[currentPage]?.map(character => {
         return <CharacterCard key={character.id} character={character} />
       })}
-    </div>
+    </main>
   )
 }

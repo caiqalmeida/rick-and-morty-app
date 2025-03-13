@@ -4,18 +4,17 @@ import classes from './index.module.scss'
 interface CharacterCardProps {
   character: Character
 }
-
 export function CharacterCard ({character} : CharacterCardProps) {
   return (
-    <div className={classes['character-card']}>
+    <dl className={classes['character-card']}>
       <img src={character.image} />
       <div className={classes['character-card__info']}>
-        <h3>{character.name}</h3>
-        <p className={classes['character-card__info__item']}><span>Status :</span> {character.status}</p>
-        <p className={classes['character-card__info__item']}><span>Specie :</span> {character.species}</p>
-        <p className={classes['character-card__info__item']}><span>Last know location :</span> {character.location.name} </p>
-        <p className={classes['character-card__info__item']}><span>First seen in :</span> {character.episode[0]} </p>
+        <dt>{character.name}</dt>
+        <dd className={classes['character-card__info__item']}><span>Status :</span> {character.status}</dd>
+        <dd className={classes['character-card__info__item']}><span>Specie :</span> {character.species}</dd>
+        <dd className={classes['character-card__info__item']}><span>Last know location :</span> {character.location.name} </dd>
+        <dd className={classes['character-card__info__item']}><span>First seen in :</span> {character.episode[0]} </dd>
       </div>
-    </div>
+    </dl>
   )
 }
