@@ -1,7 +1,7 @@
 # Rick and Morty App
 
 ## 🖼️ Interface Preview
-![Rick and Morty App Screenshot](./src/assets/app-screenshot.png)
+![Rick and Morty App](./src/assets/app-record.gif)
 
 ---
 
