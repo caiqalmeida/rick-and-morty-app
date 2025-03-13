@@ -1,3 +1,4 @@
+import loadingImg from '../../assets/loading.gif';
 import { Character } from "../../types/ram-api";
 import { CharacterCard } from "./CharacterCard";
 import classes from './index.module.scss';
@@ -11,7 +12,9 @@ interface CharactersListProps {
 export function CharactersList ({isLoadingCharacters, characters, currentPage} : CharactersListProps) {
   if(isLoadingCharacters) {
     return (
-      <h1>Carregando ...</h1>
+      <div className={classes['loading-character-list']}>
+        <img src={loadingImg} alt="Loading characters"/>
+      </div>
     )
   }
   return (
