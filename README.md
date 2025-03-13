@@ -70,10 +70,8 @@ The deployable package is the contents of the `dist/` folder after running `npm 
 rick-and-morty-app/
 │-- src/
 │   ├── components/       # Reusable UI components
-│   ├── pages/            # Page-level components
 │   ├── services/         # API service (Axios)
 │   ├── hooks/            # Custom React hooks
-│   ├── styles/           # SCSS styles
 │   ├── types/            # TypeScript type definitions
 │   ├── App.tsx           # Main App component
 │   └── main.tsx          # Entry point
