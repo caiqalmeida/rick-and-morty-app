@@ -2,6 +2,7 @@
 
 ## 🖼️ Interface Preview
 There's even a psychedelic animation in the image inspired by the series 🍄👽🌌♾️💭🌈🌀😵
+
 ![Rick and Morty App](./src/assets/app-record.gif)
 
 ---
