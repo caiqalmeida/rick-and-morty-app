@@ -1,5 +1,10 @@
 # Rick and Morty App
 
+## 🖼️ Interface Preview
+![Rick and Morty App Screenshot](./src/assets/app-screenshot.png)
+
+---
+
 ## 📖 Documentation
 
 ### 🚀 What It Does
@@ -77,11 +82,6 @@ rick-and-morty-app/
 │-- package.json          # Dependencies & scripts
 │-- vite.config.ts        # Vite configuration
 ```
-
----
-
-## 🖼️ Interface Preview
-![Rick and Morty App Screenshot](./src/assets/app-screenshot.png)
 
 ---
 
