@@ -1,15 +1,17 @@
+import { useState } from "react";
 import { SlClose, SlMagnifier } from "react-icons/sl";
 import classes from './index.module.scss';
 
 interface SearchBarProps {
   isSearching: boolean;
   searchName: string;
-  setSearchName: (search: string) => void;
-  handleSearch: () => void;
-  handleClearSearch: () => void;
+  onSearch: (search: string) => void;
+  onClearSearch: () => void;
 }
 
-export function SearchBar ({isSearching, searchName, setSearchName, handleSearch, handleClearSearch} : SearchBarProps) {
+export function SearchBar ({isSearching, searchName, onSearch, onClearSearch} : SearchBarProps) {
+
+  const [searchTerm, setSearchterm] = useState('')
 
   return (
     <>
@@ -21,17 +23,23 @@ export function SearchBar ({isSearching, searchName, setSearchName, handleSearch
       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
         let value = event.target.value;
         value = value.replace(/^\s+/, "");
-        setSearchName(value);
+        setSearchterm(value);
       }}
-      value={searchName}
+      value={searchTerm}
       />
-      <button onClick={handleSearch} className={classes['search-bar__button']}>
+      <button 
+        onClick={() => {
+          onSearch(searchTerm);
+          setSearchterm('')
+        }} 
+        className={classes['search-bar__button']}
+      >
         <SlMagnifier />Search
       </button>
     </div>
     {isSearching && (  
     <div className={classes['search-bar__info']}>
-      <button onClick={handleClearSearch} className={classes['search-bar__button']}>
+      <button onClick={onClearSearch} className={classes['search-bar__button']}>
         <SlClose />Clear search
       </button>
       <p className={classes['search-bar__info__text']}>Searching for <span>{searchName}</span></p>

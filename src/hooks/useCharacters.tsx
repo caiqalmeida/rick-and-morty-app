@@ -2,24 +2,48 @@ import { useEffect, useState } from "react";
 import { getCharacters } from "../services/ram-api";
 import { Character } from "../types/ram-api";
 
-export const useCharacters = () => {
+export interface IPagination {
+  pages: number;
+  hasNext?: boolean;
+  hasPrevious?: boolean;
+  onClickNext: () => void;
+  onClickPrev: () => void;
+  resetPage: () => void;
+}
+
+export const useCharacters = (searchName: string) => {
+
+     const onClickNext = () => {
+      setCurrentPage(current => current + 1);
+    }
+
+    const onClickPrev = () => {
+      setCurrentPage(current => current - 1);
+    }
+
+    const resetPage = () => {
+      setCurrentPage(1)
+    }
+
   const [characters, setCharacters] = useState<[Character[]] | []>([]);
   const [isLoadingCharacters, setIsLoadingCharacters] = useState(false);
-  const [pagination, setPagination] = useState({
+  const [currentPage, setCurrentPage]= useState(1);
+  const [pagination, setPagination] = useState<IPagination>({
     hasPrevious: false,
     hasNext: false,
-    current: 1,
-    pages: 0
+    pages: 0,
+    onClickNext,
+    onClickPrev,
+    resetPage
   })
   const [isSearching, setIsSearching] = useState(false);
-  const [searchName, setSearchName] = useState("");
 
-  const fetchCharacters = async ({ page = 1, isSearching }: { page?: number; isSearching?: boolean }) => {
+  const fetchCharacters = async ({ page = 1 }: { page?: number;  }) => {
     try {
       setIsLoadingCharacters(true);
 
       const params: { page: number; search?: string } = { page };
-      if (isSearching) params.search = searchName;
+      if (isSearching && searchName) params.search = searchName;
 
       const { results: fetchedCharacters, info: { next, prev, pages } } = await getCharacters(params);
       const newCharacters: [Character[]] | [] = [...characters];
@@ -27,10 +51,10 @@ export const useCharacters = () => {
       newCharacters[page] = fetchedCharacters;
 
       setPagination({
+        ...pagination,
         hasPrevious: !!prev,
         hasNext: !!next,
-        current: page,
-        pages
+        pages,
       })
       setCharacters(newCharacters);
       setIsLoadingCharacters(false);
@@ -40,34 +64,17 @@ export const useCharacters = () => {
     }
   };
 
-  const handleChangePage = (pageSum: number) => {
-    fetchCharacters({ page: pagination.current + pageSum, isSearching });
-  };
-
-  const handleSearch = () => {
-    setIsSearching(true);
-    return fetchCharacters({ page: 1, isSearching: true });
-  };
-
-  const handleClearSearch = () => {
-    setIsSearching(false);
-    setSearchName("");
-    return fetchCharacters({ page: 1 });
-  };
 
   useEffect(() => {
-    fetchCharacters({ page: 1 });
-  }, []);
+    fetchCharacters({ page: currentPage });
+  }, [currentPage, searchName, isSearching]);
 
   return {
     characters,
     isLoadingCharacters,
-    pagination: {...pagination, handleChangePage},
+    pagination,
+    currentPage,
     isSearching,
-    searchName,
-    setSearchName,
-    handleSearch,
-    handleClearSearch,
-    handleChangePage,
+    setIsSearching,
   };
 };

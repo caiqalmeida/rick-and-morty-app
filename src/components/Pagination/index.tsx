@@ -1,33 +1,29 @@
 import { SlArrowLeftCircle, SlArrowRightCircle } from "react-icons/sl";
+import { IPagination } from "../../hooks/useCharacters";
 import classes from './index.module.scss';
 
 interface PaginationProps {
-  pagination: {
-    handleChangePage: (pageSum: number) => void;
-    hasPrevious: boolean;
-    hasNext: boolean;
-    current: number;
-    pages: number;
-  }
+  currentPage: number;
+  pagination: IPagination
   isLoadingCharacters: boolean;
 }
 
 
-export function Pagination ({pagination, isLoadingCharacters} : PaginationProps ) {
-  const { current, hasNext, hasPrevious, handleChangePage, pages} = pagination;
+export function Pagination ({pagination, isLoadingCharacters, currentPage} : PaginationProps ) {
+  const {  hasNext, hasPrevious, onClickNext, onClickPrev, pages} = pagination;
   return (
     <div className={classes.pagination}>
       <button 
       className={classes['pagination__arrow']}
-      onClick={() => pagination.handleChangePage(-1)}
-      disabled={!hasPrevious || isLoadingCharacters || current === 1}
+      onClick={onClickPrev}
+      disabled={!hasPrevious || isLoadingCharacters || currentPage === 1}
       >
         <SlArrowLeftCircle />
       </button>
-      <span>Page {current} of {pages}</span>
+      <span>Page {currentPage} of {pages}</span>
       <button 
       className={classes['pagination__arrow']}
-      onClick={() => handleChangePage(+1)}
+      onClick={onClickNext}
       disabled={!hasNext || isLoadingCharacters}
       >
         <SlArrowRightCircle />
